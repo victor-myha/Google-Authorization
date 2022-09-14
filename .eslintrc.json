@@ -1,0 +1,81 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "google",
+        "plugin:prettier/recommended",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "rules": {
+        // *** eslint ***
+        "require-jsdoc": "off",
+        "no-unused-vars": "warn",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/ban-types": "off",
+        "no-nested-ternary": "off",
+        "@typescript-eslint/no-explicit-any": "warn", // allows to declare `any` typed values
+        "@typescript-eslint/restrict-template-expressions": "off", // allows to use `any` typed value in template literal expression
+        "@typescript-eslint/no-unsafe-return": "off", // allows unsafe return of an `any` typed value
+        "@typescript-eslint/no-unsafe-call": "off", // allows unsafe call of an `any` typed value
+        "@typescript-eslint/no-unsafe-member-access": "off", // allows unsafe member access to an `any` value
+        "@typescript-eslint/no-unsafe-assignment": "off", // allows unsafe assignment of an `any`
+        "@typescript-eslint/no-unsafe-argument": "off", // allows unsafe pass `any` as a function argument
+
+        // *** react ***
+        "react-hooks/rules-of-hooks": "error", // don’t call hooks inside loops, conditions, or nested functions
+        "react/react-in-jsx-scope": "off", // allows no import React,
+        "react/no-unused-prop-types": "warn",
+
+        // *** import ***
+        "import/order":[
+            "error",
+            {
+                "groups": ["builtin", "external", "internal", "index"],
+                "pathGroups":[{
+                    "pattern": "react",
+                    "group": "external",
+                    "position": "before"
+                }, {
+                    "pattern": "**/*.+(css|sass|less|scss|pcss|styl)",
+                    "patternOptions": {"dot": true, "nocomment": true},
+                    "group": "unknown",
+                    "position": "after"
+                },
+                    {
+                        "pattern": "{.,..}/**/*.+(css|sass|less|scss|pcss|styl)",
+                        "patternOptions": {"dot": true, "nocomment": true},
+                        "group": "unknown",
+                        "position": "after"
+                    }
+                ],
+                "newlines-between": "always",
+                "pathGroupsExcludedImportTypes": ["react"],
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive":true
+                }
+            }
+        ]
+    }
+}
